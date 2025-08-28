@@ -27,8 +27,9 @@
                 <img :src="servicio.imagen" alt="" width="45" />
               </td>
               <td class="text-center">
-                <img src="../assets/icons/editar.png" alt="" width="22" height="22" />
-                <img src="../assets/icons/eliminar.png" alt="" width="22" height="22" />
+                <img src="../assets/icons/editar.png" alt="Editar Servicio" width="22" height="22" />
+                <button @click="EliminarServicio(servicio.id)"><img src="../assets/icons/eliminar.png"
+                    alt="Eliminar Servicio" width="22" height="22" /></button>
               </td>
             </tr>
           </tbody>
@@ -159,6 +160,29 @@ export default {
         this.imagenBase64 = e.target.result;
       };
       reader.readAsDataURL(archivo);
+    },
+    async EliminarServicio(id) {
+      this.error = "";
+      const token = localStorage.getItem("token");
+
+      try {
+        let respuesta = await fetch(`http://localhost:5259/api/Servicio/EliminarServicio?id=${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Token: token
+          }
+        });
+
+        if (respuesta.ok) {
+          console.log("Servicio eliminado correctamente");
+          window.location.reload();
+        } else {
+          throw new Error("Ha habido un error.");
+        }
+      } catch (e) {
+        this.error = 'Error. ' + e.message;
+      }
     }
   },
   mounted() {
