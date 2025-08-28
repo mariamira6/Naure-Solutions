@@ -36,7 +36,7 @@ namespace NaureBack.Controllers
                 conversor = new LocalidadConversor(localidades);
                 res = conversor.ListaLocalidadDTO;
             }
-
+            
             return StatusCode(StatusCodes.Status200OK, res); ;
         }
 

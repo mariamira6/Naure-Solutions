@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HeBpV5DnhH4=",
+  "dgSpecHash": "2Gopr+EHk4Q=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\WebApplication1\\NaureBack.csproj",
+  "projectFilePath": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\WebApplication1\\NaureBack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Maria\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Maria\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

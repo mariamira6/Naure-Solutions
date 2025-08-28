@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("NaureTest")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("NaureBack")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00cc8c0a60e07576765b40df618a0bfec0707b3d")]
-[assembly: System.Reflection.AssemblyProductAttribute("NaureTest")]
-[assembly: System.Reflection.AssemblyTitleAttribute("NaureTest")]
+[assembly: System.Reflection.AssemblyProductAttribute("NaureBack")]
+[assembly: System.Reflection.AssemblyTitleAttribute("NaureBack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NaureBack.DTOs;
@@ -69,7 +70,7 @@ namespace NaureBack.Services
         /// Guardamos los cambios en la BBDD un servicio
         /// </summary>
         /// <param name="servicioDTO">Servicio a modificar</param>
-        /// <returns>No retorna nada</returns>
+        /// <returns>Retorna el objeto Servicio actualizado</returns>
         /// <exception cref="Exception">Si hay algún problema en la inserción en la BBDD lanza una excepción</exception>
         public async Task<Servicio> ModificarServicioAsync(ServicioDTO servicioDTO)
         {
@@ -96,6 +97,35 @@ namespace NaureBack.Services
             }
 
             return servicio;
+        }
+
+        /// <summary>
+        /// Eliminamos los datos de un servicio
+        /// </summary>
+        /// <param name="servicioDTO">Servicio a eliminar</param>
+        /// <returns>Si se ha eliminado correctamente, devuelve true. Si no, devuelve false.</returns>
+        /// <exception cref="Exception">Si hay algún problema en la eliminación de la BBDD lanza una excepción</exception>
+        public async Task<bool> EliminarServicioAsync(int id)
+        {
+            Servicio? servicio = null;
+
+            try
+            {
+                servicio = await _context.Servicios.FindAsync(id);
+
+                if (servicio != null)
+                {
+                    _context.Servicios.Remove(servicio);
+                    await _context.SaveChangesAsync();
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

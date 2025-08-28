@@ -329,6 +329,22 @@
   },
   {
     "ContainingType": "NaureBack.Controllers.ServicioController",
+    "Method": "EliminarServicioAsync",
+    "RelativePath": "api/Servicio/EliminarServicio",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NaureBack.Controllers.ServicioController",
     "Method": "InsertarServicioAsync",
     "RelativePath": "api/Servicio/InsertarServicio",
     "HttpMethod": "POST",

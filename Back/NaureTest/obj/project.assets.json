@@ -8369,11 +8369,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\NaureTest\\NaureTest.csproj",
+      "projectUniqueName": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\NaureTest\\NaureTest.csproj",
       "projectName": "NaureTest",
-      "projectPath": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\NaureTest\\NaureTest.csproj",
+      "projectPath": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\NaureTest\\NaureTest.csproj",
       "packagesPath": "C:\\Users\\Maria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\NaureTest\\obj\\",
+      "outputPath": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\NaureTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8391,8 +8391,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\WebApplication1\\NaureBack.csproj": {
-              "projectPath": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\WebApplication1\\NaureBack.csproj"
+            "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\WebApplication1\\NaureBack.csproj": {
+              "projectPath": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\WebApplication1\\NaureBack.csproj"
             }
           }
         }

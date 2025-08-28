@@ -5144,11 +5144,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\WebApplication1\\NaureBack.csproj",
+      "projectUniqueName": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\WebApplication1\\NaureBack.csproj",
       "projectName": "NaureBack",
-      "projectPath": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\WebApplication1\\NaureBack.csproj",
+      "projectPath": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\WebApplication1\\NaureBack.csproj",
       "packagesPath": "C:\\Users\\Maria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maria\\Desktop\\Back\\Prueba\\WebApplication1\\obj\\",
+      "outputPath": "C:\\Users\\Maria\\source\\repos\\Naure_Solutions\\Back\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Maria\\AppData\\Roaming\\NuGet\\NuGet.Config",

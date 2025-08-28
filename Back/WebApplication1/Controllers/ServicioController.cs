@@ -131,5 +131,37 @@ namespace NaureBack.Controllers
                 return StatusCode(StatusCodes.Status401Unauthorized, "Usuario no autorizado");
             }
         }
+
+        /// <summary>
+        /// Eliminamos un servicio en la BBDD
+        /// </summary>
+        /// <param name="id">Id del servicio a eliminar</param>
+        /// <returns>Si se ha eliminado, devuelve código 204. Si no se ha podido, devolverá código 404."</returns>
+        [HttpDelete("EliminarServicio")]
+        public async Task<ActionResult> EliminarServicioAsync(int id)
+        {
+            if (Request.Headers.ContainsKey("Token") && _palabraClave.Existe(Request.Headers["Token"].ToString()))
+            {
+                try
+                {
+                    ServicioServicio servicioServicio = new ServicioServicio(_context);
+                    bool eliminado = await servicioServicio.EliminarServicioAsync(id);
+
+                    if (eliminado)
+                    {
+                        return StatusCode(StatusCodes.Status204NoContent);
+                    } else
+                    {
+                        return StatusCode(StatusCodes.Status404NotFound, "No se ha encontrado el servicio\n");
+                    }
+                } catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "No se ha podido eliminar el servicio\n");
+                }
+            } else
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "Usuario no autorizado");
+            }
+        }
     }
 }
