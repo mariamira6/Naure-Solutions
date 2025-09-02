@@ -133,6 +133,32 @@
   },
   {
     "ContainingType": "NaureBack.Controllers.ContratacionController",
+    "Method": "ListarContratacionClienteAsync",
+    "RelativePath": "api/Contratacion/ListarContratacionesCliente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IList\u00601[[NaureBack.DTOs.ContratacionDTO, NaureBack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NaureBack.Controllers.ContratacionController",
     "Method": "ObtenerContratacionPorIdAsync",
     "RelativePath": "api/Contratacion/ObtenerContratacionPorId",
     "HttpMethod": "GET",
@@ -393,7 +419,7 @@
     "ContainingType": "NaureBack.Controllers.ServicioController",
     "Method": "ModificarServicioAsync",
     "RelativePath": "api/Servicio/ModificarServicio",
-    "HttpMethod": "POST",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [

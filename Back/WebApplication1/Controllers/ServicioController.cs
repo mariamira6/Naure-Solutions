@@ -102,7 +102,7 @@ namespace NaureBack.Controllers
         /// </summary>
         /// <param name="servicioDTO">Servicio a modificar</param>
         /// <returns>Si se ha podido modificar, devolvemos "Servicio modificado con éxito", si no, devolvemos "No se ha podido modificar el servicio\n"</returns>
-        [HttpPost]
+        [HttpPut]
         [Route("ModificarServicio")]
         public async Task<ActionResult<string>> ModificarServicioAsync(ServicioDTO servicioDTO)
         {

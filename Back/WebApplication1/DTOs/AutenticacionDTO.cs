@@ -18,5 +18,10 @@ namespace NaureBack.DTOs
         public string? PalabraClave { get; set; }
 
         public string? Mensaje { get; set; }
+
+        public int? IdUsuario //esto es lo que he introducido nuevo
+        {
+            get; set;
+        }
     }
 }

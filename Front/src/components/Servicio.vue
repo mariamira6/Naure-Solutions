@@ -2,7 +2,7 @@
   <div class="card" v-for="(servicio, i) in servicios" :key="i" style="width: 20rem;">
     <router-link class="enlaceServicio text-decoration-none cursor-pointer"
       :to="`/servicioscontratados/${servicio.idContratacion}/detalle`">
-      <img :src="servicio.imagen" class="card-img-top" alt="hola">
+      <img :src="servicio.imagen" class="card-img-top" :alt="servicio.nombre">
       <div class="card-body text-center">
         <p class="card-text">{{ servicio.nombre }}</p>
         <p class="card-text">{{ formatearFecha(servicio.fechaDesde) }} - {{ formatearFecha(servicio.fechaHasta) }}</p>

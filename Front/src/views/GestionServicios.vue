@@ -6,7 +6,7 @@
       <div class="bg-light flex-grow-1 p-5">
         <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 100%;">
           <h4 class=" mb-5 text-center">Gestión de servicios</h4>
-          <button class="btn btn-info text-white fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">Crear
+          <button class="btn btn-info text-white fw-bold" data-bs-toggle="modal" data-bs-target="#insertarModal">Crear
             nuevo
             servicio</button>
         </div>
@@ -24,22 +24,25 @@
               <td>{{ servicio.nombre }}</td>
               <td class="text-truncate" style="max-width: 500px;">{{ servicio.descripcion }}</td>
               <td class="text-center">
-                <img :src="servicio.imagen" alt="" width="45" />
+                <img :src="servicio.imagen" :alt="servicio.nombre" width="45" />
               </td>
               <td class="text-center">
-                <img src="../assets/icons/editar.png" alt="Editar Servicio" width="22" height="22" />
-                <button @click="EliminarServicio(servicio.id)"><img src="../assets/icons/eliminar.png"
+                <button style="border: none;" data-bs-toggle="modal" data-bs-target="#editarModal"
+                  @click="servicioSeleccionado = servicio"><img src="../assets/icons/editar.png" alt="Editar Servicio"
+                    width="22" height="22" /></button>
+                <button style="border: none;" data-bs-toggle="modal" data-bs-target="#eliminarModal"
+                  @click="servicioSeleccionado = servicio"><img src="../assets/icons/eliminar.png"
                     alt="Eliminar Servicio" width="22" height="22" /></button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal fade" id="insertarModal" tabindex="-1" aria-labelledby="insertarModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content text-start">
             <div class="modal-header">
-              <h5 class="modal-title" id="loginModalLabel">Insertar nuevo servicio</h5>
+              <h5 class="modal-title" id="insertarModalLabel">Insertar nuevo servicio</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body">
@@ -56,10 +59,69 @@
                   <label for="iamgen" class="form-label">Imagen del servicio</label>
                   <input type="file" id="imagen" accept="image/*" @change="procesarImagen" />
                 </div>
-                <div class=" container-fluid d-flex align-items-center gap-3">
-                  <button type="submit" class="btn btn-primary text-center">Guardar</button>
+                <div class="container-fluid d-flex align-items-center gap-3">
+                  <button type="submit" class="btn btn-primary text-center" data-bs-dismiss="modal">Guardar</button>
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-secondary text-center">Cancelar</button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content text-start">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editarModalLabel">Editar servicio</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form @submit.prevent="EditarServicio(servicioSeleccionado)">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre del servicio</label>
+                  <input type="text" class="form-control" id="nombreServicio" :value="servicioSeleccionado.nombre"
+                    required>
+                </div>
+                <div class="mb-3">
+                  <label for="descripcion" class="form-label">Descripción del servicio</label>
+                  <input type="text" class="form-control" id="descripcionServicio"
+                    :value="servicioSeleccionado.descripcion" required>
+                </div>
+                <div class="mb-3">
+                  <p>Imagen actual del servicio:</p>
+                  <img :src="servicioSeleccionado.imagen" alt="Imagen Servicio" width="45" />
+                </div>
+                <div class="mb-3">
+                  <label for="iamgen" class="form-label">Cambiar imagen del servicio</label>
+                  <input type="file" id="imagen" accept="image/*" @change="procesarImagen" />
+                </div>
+                <div class="container-fluid d-flex align-items-center gap-3">
+                  <button type="submit" class="btn btn-primary text-center" data-bs-dismiss="modal">Actualizar</button>
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-secondary text-center">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content text-start">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eliminarModalLabel">Eliminar servicio</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Vas a proceder a eliminar un servicio. ¿Estás seguro/a?</p>
+              <div class="d-flex gap-2 align-items-center">
+                <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal"
+                  @click="EliminarServicio(servicioSeleccionado.id)">
+                  Sí
+                </button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary text-center">
+                  Cancelar
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -71,6 +133,8 @@
 <script>
 import MenuLateral from '../components/MenuLateral.vue';
 import MenuAdmin from '../components/MenuAdmin.vue';
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-bootstrap.css';
 
 export default {
   components: { MenuAdmin, MenuLateral },
@@ -84,7 +148,13 @@ export default {
       ],
       servicios: [],
       error: "",
-      imagenBase64: ""
+      imagenBase64: "",
+      servicioSeleccionado: {
+        id: null,
+        nombre: "",
+        descripcion: "",
+        imagen: ""
+      }
     };
   },
   methods: {
@@ -112,7 +182,7 @@ export default {
     },
     async insertarServicio() {
       this.error = "";
-
+      const toast = useToast();
       let nombre = document.getElementById("nombre").value;
       let descripcion = document.getElementById("descripcion").value;
 
@@ -141,13 +211,16 @@ export default {
             document.getElementById("imagen").value = "";
             this.imagenBase64 = "";
 
-            window.location.reload();
+            this.listarServicios();
+            toast.success("Servicio creado correctamente", {
+              position: 'top-right',
+              duration: 3000
+            });
           } else {
             throw new Error("Error al insertar el servicio");
           }
         } catch (e) {
           this.error = "Error. " + e.message;
-          console.error(e);
         }
       }
     },
@@ -161,9 +234,54 @@ export default {
       };
       reader.readAsDataURL(archivo);
     },
+    async EditarServicio(servicio) {
+      this.error = "";
+      const token = localStorage.getItem("token");
+      const toast = useToast();
+      let nombre = document.getElementById("nombreServicio").value;
+      let descripcion = document.getElementById("descripcionServicio").value;
+      let imagen = "";
+
+      if (this.imagenBase64) {
+        imagen = this.imagenBase64;
+      } else {
+        imagen = servicio.imagen;
+      }
+
+      let servicioActualizado = {
+        id: servicio.id,
+        nombre,
+        descripcion,
+        imagen
+      };
+
+      try {
+        let respuesta = await fetch("http://localhost:5259/api/Servicio/ModificarServicio", {
+          method: "PUT", headers: {
+            "Content-Type": "application/json",
+            Token: token
+          },
+          body: JSON.stringify(servicioActualizado)
+        });
+
+        if (respuesta.ok) {
+          this.listarServicios();
+          this.imagenBase64 = "";
+          toast.success("Servicio actualizado correctamente", {
+            position: 'top-right',
+            duration: 3000
+          });
+        } else {
+          throw new Error("Error al actualizar el servicio");
+        }
+      } catch (e) {
+        this.error = "Error. " + e.message;
+      }
+    },
     async EliminarServicio(id) {
       this.error = "";
       const token = localStorage.getItem("token");
+      const toast = useToast();
 
       try {
         let respuesta = await fetch(`http://localhost:5259/api/Servicio/EliminarServicio?id=${id}`, {
@@ -175,10 +293,15 @@ export default {
         });
 
         if (respuesta.ok) {
-          console.log("Servicio eliminado correctamente");
-          window.location.reload();
+          this.listarServicios();
+          toast.success("Servicio eliminado correctamente", {
+            position: 'top-right',
+            duration: 3000
+          });
+
         } else {
           throw new Error("Ha habido un error.");
+
         }
       } catch (e) {
         this.error = 'Error. ' + e.message;

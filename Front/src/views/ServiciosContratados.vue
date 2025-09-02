@@ -5,7 +5,7 @@
       <MenuLateral :opciones="opciones" />
       <div class="bg-light w-100 p-5">
         <h3 class="mb-5 text-center">Servicios contratados</h3>
-        <div class="container-fluid d-flex flex-row w-100 justify-content-center gap-5">
+        <div class="container-fluid d-flex flex-wrap flex-row w-100 justify-content-center gap-5">
           <Servicio :servicios="servicios" />
         </div>
         <div class="citas container justify-content-center">
