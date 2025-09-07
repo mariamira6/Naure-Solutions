@@ -185,6 +185,74 @@
   },
   {
     "ContainingType": "NaureBack.Controllers.DocumentoController",
+    "Method": "ActualizarArchivoAsync",
+    "RelativePath": "api/Documento/ActualizarDocumento",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documento",
+        "Type": "NaureBack.DTOs.DocumentoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NaureBack.Controllers.DocumentoController",
+    "Method": "EliminarDocumentoAsync",
+    "RelativePath": "api/Documento/EliminarDocumento",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NaureBack.Controllers.DocumentoController",
+    "Method": "InsertarDocumentoAsync",
+    "RelativePath": "api/Documento/InsertarDocumento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documento",
+        "Type": "NaureBack.DTOs.DocumentoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NaureBack.Controllers.DocumentoController",
     "Method": "ObtenerDocumentoPorIdAsync",
     "RelativePath": "api/Documento/ObtenerDocumentoPorId",
     "HttpMethod": "GET",
@@ -252,32 +320,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IList\u00601[[NaureBack.DTOs.DocumentoDTO, NaureBack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "NaureBack.Controllers.DocumentoController",
-    "Method": "SubirArchivoAsync",
-    "RelativePath": "api/Documento/SubirArchivo",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "documento",
-        "Type": "NaureBack.DTOs.DocumentoDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
         "MediaTypes": [
           "text/plain",
           "application/json",

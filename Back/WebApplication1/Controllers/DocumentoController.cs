@@ -106,8 +106,31 @@ namespace NaureBack.Controllers
         }
 
         [HttpPost]
-        [Route("SubirArchivo")]
-        public async Task<ActionResult<string>> SubirArchivoAsync(DocumentoDTO documento)
+        [Route("InsertarDocumento")]
+        public async Task<ActionResult<string>> InsertarDocumentoAsync(DocumentoDTO documento)
+        {
+            if (Request.Headers.ContainsKey("Token") && _palabraClave.Existe(Request.Headers["Token"].ToString()))
+            {
+                try
+                {
+                    DocumentoServicio documentoServicio = new DocumentoServicio(_context);
+                    await documentoServicio.InsertarDocumentoAsync(documento);
+                    return StatusCode(StatusCodes.Status201Created, "Documento añadido con éxito");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "No se ha podido añadir el documento\n" + ex.Message);
+                }
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "Usuario no autorizado");
+            }
+        }
+
+        [HttpPut]
+        [Route("ActualizarDocumento")]
+        public async Task<ActionResult<string>> ActualizarArchivoAsync(DocumentoDTO documento)
         {
             if (Request.Headers.ContainsKey("Token") && _palabraClave.Existe(Request.Headers["Token"].ToString()))
             {
@@ -120,6 +143,37 @@ namespace NaureBack.Controllers
                 catch (Exception ex)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, "No se ha podido actualizar el archivo\n" + ex.Message);
+                }
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, "Usuario no autorizado");
+            }
+        }
+
+        [HttpDelete]
+        [Route("EliminarDocumento")]
+        public async Task<ActionResult> EliminarDocumentoAsync(int id)
+        {
+            if (Request.Headers.ContainsKey("Token") && _palabraClave.Existe(Request.Headers["Token"].ToString()))
+            {
+                try
+                {
+                    DocumentoServicio documentoServicio = new DocumentoServicio(_context);
+                    bool eliminado = await documentoServicio.EliminarDocumentoAsync(id);
+
+                    if (eliminado)
+                    {
+                        return StatusCode(StatusCodes.Status204NoContent);
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status404NotFound, "No se ha encontrado el documento\n");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "No se ha podido eliminar el documento\n");
                 }
             }
             else

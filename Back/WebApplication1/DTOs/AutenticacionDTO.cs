@@ -19,7 +19,7 @@ namespace NaureBack.DTOs
 
         public string? Mensaje { get; set; }
 
-        public int? IdUsuario //esto es lo que he introducido nuevo
+        public int? IdUsuario 
         {
             get; set;
         }

@@ -105,7 +105,7 @@ namespace NaureBack.Controllers
                     res.Mensaje = "Usuario autenticado con éxito";
                     res.PalabraClave = Guid.NewGuid().ToString();
                     res.EsAdmin = usuario.EsAdmin;
-                    res.IdUsuario = usuario.Id; //esto es lo que he introducido nuevo
+                    res.IdUsuario = usuario.Id; 
 
                     _palabraClave.Insertar(res.PalabraClave);
                 }

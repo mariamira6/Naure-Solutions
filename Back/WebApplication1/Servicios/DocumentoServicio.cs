@@ -76,6 +76,27 @@ namespace NaureBack.Services
             return documento;
         }
 
+        public async Task InsertarDocumentoAsync(DocumentoDTO documentoDTO)
+        {
+            try
+            {
+                Documento nuevoDocumento = new Documento()
+                {
+                    Nombre = documentoDTO.Nombre,
+                    Archivo = documentoDTO.Archivo,
+                    IdServicio = documentoDTO.IdServicio
+                };
+
+                await _context.Documentos.AddAsync(nuevoDocumento);
+                await _context.SaveChangesAsync();
+
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
         /// <summary>
         /// Actualiza en BBDD el documento pasado por parámetro
         /// </summary>
@@ -91,6 +112,31 @@ namespace NaureBack.Services
                 documento.Nombre = documentoDTO.Nombre;
                 _context.Documentos.Update(documento);
                 await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> EliminarDocumentoAsync(int id)
+        {
+            Documento? documento = null;
+
+            try
+            {
+                documento = await _context.Documentos.FindAsync(id);
+
+                if (documento != null)
+                {
+                    _context.Documentos.Remove(documento);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
